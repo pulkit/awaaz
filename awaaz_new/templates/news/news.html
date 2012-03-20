@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>News</title>
+</head>
+<body>
+{% if news_list %}
+	<ul decoration="none">
+		{% for news in news_list %}
+			<li>
+			<img src="/static/{{ news.image }}" height="200" width="150"/>{{ news.news }}
+			<br>
+			{{ news.date }}
+			</li>
+			<br>
+		{% endfor %}
+	</ul>
+{% endif %}
+</body>
+</html>

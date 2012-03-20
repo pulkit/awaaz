@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/awaazstyle.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript"></script>
+	<script src="{{ STATIC_URL }}js/jCarouselLite.js" type="text/javascript"></script>
+	
+<script type="text/javascript">  
+    $(function() {  
+    $(".newsticker-jcarousellite").jCarouselLite({  
+            vertical: true,  
+            visible: 3,  
+            auto:1000,  
+            speed:2000  
+        });  
+    });  
+    </script> 
+<!-- include Cycle plugin -->
+<script type="text/javascript" src="http://cloud.github.com/downloads/malsup/cycle/jquery.cycle.all.2.74.js"></script>
+
+<!--  initialize the slideshow when the DOM is ready -->
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.slideshow').cycle({
+		fx: 'scrollRight' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+	});
+});
+</script>
+<script>
+$("a[href*=.pdf]").click(function(){
+	window.open(this.href);
+	return false;
+});   
+</script>
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+	<table width="510" align="left" style="border-collapse: collapse"><tr height="30"></tr><tr height="30"><td width="20"></td> <td width="120" align="center" ><a href="/">मुख्य पृष्ठ</a></td><td width="120" align="center"  > <a href="/awaaz/news/all">खबरें </a></td><td width="120" align="center"> <a href="/awaaz/yourvoice/">आपकी आवाज़</a></td><td width="120" align="center"> <a href="/awaaz/sponsors/">प्रायोजक</a></td></tr> <tr height="30"><td width="20"><td align="center" ><a href="/awaaz/gymkhana/about">जिमखाना</a></td><td width="120" align="center" style="background-color :	#E0EAFB; border-radius:5px;width:120px;padding:2px;box-shadow: 4px 4px 4px #888888;"> <a href="/awaaz/issues/">प्रकाशन</a></td><td width="120" align="center"> <a href="/awaaz/about/">परिचय</a> </td><td width="120" align="center"><a href="/awaaz/contact/">हमें लिखें</a> </td></tr> </table>
+</div>
+<div id="main">
+<div id="content">
+<form action="/awaaz/issues/search/" method="POST">{% csrf_token %}
+     
+<select name="issue_year">
+<h>year :</h>
+<option value="2010"> 2010</option>
+<option value="2009"> 2009</option>
+<option value="2008"> 2008</option>
+<option value="2007"> 2007</option>
+<option value="2006"> 2006</option>
+</select>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<select name="issue_month">
+<h>month :</h>
+<option value="january">january</option>
+<option value="february">february</option>
+<option value="march">march</option>
+<option value="april">april</option>
+<option value="may">may</option>
+<option value="june">june</option>
+<option value="july">july</option>
+<option value="august">august</option>
+<option value="september">september</option>
+<option value="october">october</option>
+<option value="november">november</option>
+<option value="december">december</option>
+</select>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="submit" value="search">
+</form>
+<br><br><br>			
+{% if issues.object_list %}
+
+		{% for issue in issues.object_list %}
+			<h>{{ issue.year }}</h><br>
+			<h>{{ issue.month }}</h>
+			{{ issue.embed|safe}}
+		<br></br>
+		{% endfor %}
+	
+<br>
+<div class="pagination">
+    <span class="step-links">
+        {% if issues.has_previous %}
+            <a href="?page={{ issues.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+          <p>  Page {{ issues.number }} of {{ issues.paginator.num_pages }}.</p>
+        </span>
+
+        {% if issues.has_next %}
+            <a href="?page={{ issues.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+
+</div>
+{% include "awaaz/side.html" %}

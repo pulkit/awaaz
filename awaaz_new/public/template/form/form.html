@@ -1,0 +1,46 @@
+<html>
+<head>
+	<title>Contact Me </title>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/style
+.css" />
+
+</head>
+<body>
+<div id="wrapper">
+<div id="main">
+<h1>Contact Me </h1>
+	{% if errors %}
+		<ul> {% for error in errors %}
+			<li> {{ error }} </li>
+              {% endfor %}
+        </ul>
+	{% endif %}
+	
+	<form action="/contact/" method="POST">	
+	{% csrf_token %}
+	{{ form.non_field_errors }}
+    <div class="fieldWrapper">
+        {{ form.sender.errors }}
+        <label for="id_sender">Your email address</label>
+        {{ form.sender }}
+		<br><br>
+    </div>
+    <div class="fieldWrapper">
+        {{ form.subject.errors }}
+        <label for="id_subject">E-mail subject</label>
+        {{ form.subject }}
+				<br><br>
+    </div>
+
+	<div class="fieldWrapper">
+        {{ form.message.errors }}
+        <label for="id_message">Your message</label>
+        {{ form.message }}
+		<br><br>
+    </div>
+		<input type="submit" value="Submit">
+	</form>
+</div>
+</div>
+	</body>
+	</html> 	

@@ -1,0 +1,240 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/awaazstyle.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script src="{{ STATIC_URL }}js/jCarouselLite.js" type="text/javascript"></script>
+	<script src="{{ STATIC_URL }}js/extraNews.js" type="text/javascript"></script>
+        <script src="{{ STATIC_URL }}js/chart1.js" type="text/javascript"></script>
+	<script src="{{ STATIC_URL }}js/chart2.js" type="text/javascript"></script>
+	<script src="{{ STATIC_URL }}js/chart3.js" type="text/javascript"></script>
+	<script src="{{ STATIC_URL }}js/charts.js" type="text/javascript"></script>	
+<script type="text/javascript">  
+    $(function() {  
+    $(".newsticker-jcarousellite").jCarouselLite({  
+            vertical: true,  
+            visible: 2,  
+            auto:1000,  
+            speed:2000  
+        });  
+    });  
+    </script> 
+<!-- include Cycle plugin -->
+<script type="text/javascript" src="http://cloud.github.com/downloads/malsup/cycle/jquery.cycle.all.2.74.js"></script>
+
+<!--  initialize the slideshow when the DOM is ready -->
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.slideshow').cycle({
+		fx: 'scrollRight' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+	});
+});
+</script>  
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+<table width="510" align="left" style="border-collapse: collapse"><tr height="30"></tr><tr height="30"><td width="20"></td> <td width="120" align="center" style="background-color :	#E0EAFB; border-radius:5px;width:120px;padding:2px;box-shadow: 4px 4px 4px #888888;"><a href="/">मुख्य पृष्ठ</a></td><td width="120" align="center"  > <a href="/awaaz/news/all">खबरें </a></td><td width="120" align="center"> <a href="/awaaz/yourvoice/">आपकी आवाज़</a></td><td width="120" align="center"> <a href="/awaaz/sponsors/">प्रायोजक </a></td></tr> <tr height="30"><td width="20"><td align="center" ><a href="/awaaz/gymkhana/about">जिमखाना</a></td><td width="120" align="center"> <a href="/awaaz/issues/">प्रकाशन</a></td><td width="120" align="center"> <a href="/awaaz/about/">परिचय</a> </td><td width="120" align="center"><a href="/awaaz/contact/">हमें लिखें</a> </td></tr> </table>
+</div>
+<div id="main">
+<div id="extranews">
+
+	<div id='extranews1' style="display:block;">
+	<a href="javascript:switchid('extranews1');"   align="center" style="background-color :	#E0EAFB; border-radius:5px;width:220px;padding:2px;box-shadow: 5px 5px 5px #888888;">संस्थान</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; &nbsp;
+<a href="javascript:switchid('extranews2');" >जिमखाना</a>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+<a href="javascript:switchid('extranews3');" > विविध </a>
+<br>
+</br>
+{% if insti_list %}
+		<div id="list">
+			{% for news in insti_list %}
+			{% if news.id|divisibleby:"2" %}
+		<p>{{ news.institute|safe }}</p>
+			{% else %}
+		<p style="background:#99CCCC">{{ news.institute|safe }}</p>
+		{% endif %}
+		<br>
+		{% endfor %}
+	</div>
+ {% endif %}	
+</div>
+	<div id='extranews2' style="display:none;">
+	<a href="javascript:switchid('extranews1');"  >संस्थान</a>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+<a href="javascript:switchid('extranews2'); align="center" style="background-color :	#E0EAFB; border-radius:5px;width:220px;padding:2px;box-shadow: 5px 5px 5px #888888;" >जिमखाना</a>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+<a href="javascript:switchid('extranews3');" > विविध </a>
+<br>
+</br>
+{% if gym_list %}
+		<div id="list">
+			{% for news in gym_list %}
+		{% if news.id|divisibleby:"2" %}
+		<p>{{ news.gymkhana|safe }}</p>
+			{% else %}
+		<p style="background:#99CCCC">{{ news.gymkhana|safe }}</p>
+		{% endif %}
+		<br>
+		{% endfor %}
+	</div>
+ {% endif %}	
+		
+	</div>
+
+	<div id='extranews3' style="display:none;">
+	<a href="javascript:switchid('extranews1');"  >संस्थान</a>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+<a href="javascript:switchid('extranews2');" >जिमखाना</a>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+<a href="javascript:switchid('extranews3'); align="center" style="background-color :	#E0EAFB; border-radius:5px;width:220px;padding:2px;box-shadow: 5px 5px 5px #888888;" > विविध </a>
+<br>
+</br>
+{% if ext_list %}
+		<div id="list">
+			{% for news in ext_list %}
+		{% if news.id|divisibleby:"2" %}
+		<p>{{ news.external|safe }}</p>
+			{% else %}
+		<p style="background:#99CCCC">{{ news.external|safe }}</p>
+		{% endif %}		<br>
+		{% endfor %}
+	</div>
+ {% endif %}	
+
+	
+		
+	</div>
+	
+	</div>
+<div id="gc">
+<h align="center" style="background-color :	#E0EAFB; border-radius:5px;width:220px;padding:2px;box-shadow: 5px 5px 5px #888888;">ख़बरों में खड़गपुर </h><hr><br></br>
+<div class="newsticker-jcarousellite">
+		<ul>
+          {% if scroll_list %}
+			{% for news in scroll_list %}
+			<li>
+			<div class="thumbnail">{% if news.image %}
+			<img src="{{ STATIC_URL }}{{ news.image|safe}}" height="60" width="80" align="top">{% endif %}
+			</div>
+		<div class="info">{{ news.news|safe }}</div>
+		</li>
+		<br>
+		{% endfor %}
+ {% endif %}
+        </ul>
+    </div>
+
+</div>
+	</div>
+<div id="issue"><h align="center" style="background-color :	#E0EAFB; border-radius:5px;width:220px;padding:2px;box-shadow: 5px 5px 5px #888888;">नवीनतम अंक </h><hr>
+<div><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" style="width:250px;height:250px" id="408aa80d-61bd-c551-b55b-01a1a1571d9a" ><param name="movie" value="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&amp;backgroundColor=%23222222&amp;documentId=110821073629-5a2187435c674cc4804c71d7e458dc7d" /><param name="allowfullscreen" value="true"/><param name="menu" value="false"/><param name="wmode" value="transparent"/><embed src="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf" type="application/x-shockwave-flash" allowfullscreen="true" menu="false" wmode="transparent" style="width:250px;height:250px" flashvars="mode=mini&amp;backgroundColor=%23222222&amp;documentId=110821073629-5a2187435c674cc4804c71d7e458dc7d" /></object><div style="width:250px;text-align:left;"><h align="center" style="background-color :	#E0EAFB; border-radius:5px;width:220px;padding:2px;box-shadow: 5px 5px 5px #888888;"> august 2011</h></div></div></div>
+
+<div id="content">
+<br>
+<br>
+<br>
+<br>
+<table>
+<td >			
+{% if news_list %}
+	
+		{% for news in news_list %}
+			
+                        <table>
+			<td id="news"><h ><a href="/awaaz/news/{{ news.id }}/" style="font-size:30px;font-family:sans-serif"><b >{{ news.title }}</b></a></h><br>
+			<p><a href="/awaaz/news/{{ news.id }}/#disqus_thread" data-disqus-identifier="{{ news.id }}"> </a></p>
+			<h style="font-size:11px;">{{ news.date }}</h><br><hr>
+			{% if news.image %}
+			<p><img src="{{ STATIC_URL }}{{ news.image|safe}}" height="150" width="150" align="left"  style="padding:8px 8px 8px 8px">{% endif %}{{ news.short_news|safe }}</img></p><br></br>
+         
+			</td>
+			
+			</table>
+			<a href="/awaaz/news/{{ news.id }}/" style="font-size:15px">read more....</a>
+			<br></br><br></br>
+		{% endfor %}
+	</ul>
+<br>
+{% endif %}
+</td>
+</table>
+</div>
+<div id="side">
+<br><br>
+<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=132847210139757&amp;xfbml=1"></script><fb:like href="https://www.facebook.com/pages/%E0%A4%86%E0%A4%B5%E0%A4%BE%E0%A4%9C%E0%A4%BC-IIT-Kharagpur/146188872068143?ref=ts&amp;sk=wall" send="true" width="250" show_faces="true" font="lucida grande"></fb:like>
+<br></br>
+<br></br>
+<h align="center" style="background-color :	#E0EAFB; border-radius:5px;width:220px;padding:2px;box-shadow: 5px 5px 5px #888888;">Panji dude</h><hr><br></br>
+<a href="/awaaz/panji/" style="color:black"><img src="{{ STATIC_URL }}img/panji.jpg" style="height:260px;width:290px" border="2px"/></a>
+<br></br><br></br>
+<div >
+
+	<div id='chart1' style="display:block;">
+	
+	
+<a href="javascript:Switchid('chart1');"   align="center" style="background-color :	#E0EAFB; border-radius:5px;width:220px;padding:2px;box-shadow: 5px 5px 5px #888888;" >टेक </a>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+<a href="javascript:Switchid('chart2');">स्पोर्ट्स </a>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+<a href="javascript:Switchid('chart3');">सोशल कल्चरल </a>
+<br>
+</br>
+<div id='GcChart1' style="display:block;">
+
+	</div>
+</div>
+	<div id='chart2' style="display:none;">
+
+	<a href="javascript:Switchid('chart1');"   >टेक </a>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+<a href="javascript:Switchid('chart2');"  align="center" style="background-color :	#E0EAFB; border-radius:5px;width:220px;padding:2px;box-shadow: 5px 5px 5px #888888;">स्पोर्ट्स </a>&nbsp; &nbsp;&nbsp; &nbsp;
+<a href="javascript:Switchid('chart3');">सोशल कल्चरल </a>
+<br>
+</br>	
+<div id='GcChart2' style="display:block;">
+			</div>
+</div>
+	<div id='chart3' style="display:none;">
+
+	<a href="javascript:Switchid('chart1');"  >टेक </a>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+<a href="javascript:Switchid('chart2');">स्पोर्ट्स </a>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+<a href="javascript:Switchid('chart3');"  align="center" style="background-color :	#E0EAFB; border-radius:5px;width:220px;padding:2px;box-shadow: 5px 5px 5px #888888;">सोशल कल्चरल </a>
+<br>
+</br>
+		<div id='GcChart3' style="display:block;">
+					
+	</div>
+	</div>
+		<br></br><br></br>
+<a href="/awaaz/photos/">
+<h align="center" style="background-color :	#E0EAFB; border-radius:5px;width:220px;padding:2px;box-shadow: 5px 5px 5px #888888;">चित्रशाला</h><hr><br></br>
+<div class="slideshow">
+		<img src="{{ STATIC_URL }}img/image1.jpg" width="200" height="200" />
+		<img src="{{ STATIC_URL }}img/image2.JPG" width="200" height="200" />
+		<img src="{{ STATIC_URL }}img/image3.jpg" width="200" height="200" />
+	</div>
+    </a>
+    
+</div>
+</div>
+<div id="footer">
+<h4 style="color:white" ><br>&copy Copyright awaaz 2011 <a href="http://www.iitkgp.ac.in" style="color:white">IIT kharagpur</a></h>
+<br>
+                    Best Viewed in <a href="http://www.mozilla.com/en-US/firefox/" style="color:white">Mozilla Firefox</a>
+                    and <a href="http://www.google.com/chrome" target="_blank" style="color:white">Google Chrome</a>
+                    <br>
+                    A Website powered by <a href="http://www.djangoproject.com/" target="_blank" style="color:white">Django Framework</a>
+                    of <a href="http://python.org/" target="_blank" style="color:white">Python</a>
+                    <a href="http://apycom.com/"></a>
+
+</div>
+</div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'awaaz'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>
