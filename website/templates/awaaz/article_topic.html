@@ -1,0 +1,35 @@
+{% extends "base_site.html" %}
+{% block content %}
+
+{% if topic %}
+	<table >
+			<td id="news">
+			<p style="font-family:Helvetica;font-size:150%;color:#CD5C5C">{{ topic.title }}</p><br>
+			<h style="font-size:11px;">{{ topic.date }}</h><br><hr>
+			<h style="font-size:14px;">{{ topic.name }}</h><br>
+			<p>{{ topic.article|safe }}</p><br>
+			</td>
+			<br>
+	</table>
+<br>
+{% endif %}
+<span  class='st_twitter_large' ></span><span  class='st_facebook_large' ></span><span  class='st_yahoo_large' ></span><span  class='st_gbuzz_large' ></span><span  class='st_email_large' ></span><span  class='st_sharethis_large' ></span>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'awaaz'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = 'yv.{{ topic.id }}';
+    var disqus_url = 'http://awaaz.alwaysdata.net/awaaz/yourvoice/{{ topic.id}}';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+{% endblock %}

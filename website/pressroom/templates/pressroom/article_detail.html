@@ -1,0 +1,57 @@
+{% extends "base_site.html" %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content %}
+<h1><a href="{{ object.get_absolute_url }}">{{ object.headline }}</a></h1><br></br>
+<div class="article-wrapper">
+{% if object.photos.all %}
+<div class="article-photos">
+{% for p in object.photos.all %}
+<div class="article-photo"><img src="{{ p.get_thumbnail_url }}"/><br/>{{p.caption}}</div>
+{% endfor %}
+</div>
+{% endif %}
+
+<div class="article-body" style="text-align:justify;line-height:200%">{{ object.body }}</div>
+<div class="article-author">{{ object.author }}</div>
+<div class="article-pubdate">{{ object.pub_date|date:"F j, Y" }}</div>    
+</div>
+
+{% if object.documents.all %}
+<div class="documents">
+<h2>Related Documents</h2>
+<ul>
+{% for doc in object.documents.all %}
+<li>
+<a href="{{doc.file.url}}">{{doc.title}}</a>
+<br/>
+<small>{{doc.summary}}</small>
+{% endfor %}</li>
+</ul>
+</div>
+{% endif %}
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'awaaz'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = '14';
+    var disqus_url = 'http://awaaz.alwaysdata.net/awaaz/news/14';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+{% endblock %}
+
+
+

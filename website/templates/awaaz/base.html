@@ -1,0 +1,81 @@
+{% extends "base_site.html" %}
+
+{% block extra_head %}
+        <script src="{{ STATIC_URL }}js/jCarouselLite.js" type="text/javascript"></script>
+        <script src="{{ STATIC_URL }}js/extraNews.js" type="text/javascript"></script>
+        <script type="text/javascript">  
+            $(function() {  
+                    $(".newsticker-jcarousellite").jCarouselLite({  
+vertical: true,  
+visible: 2,  
+auto:1000,  
+speed:2000  
+});  
+                    });
+      
+        
+</script> 
+{% endblock %}
+{% block extra %}
+
+ <div id="extranews">
+
+                    <div id='extranews1' style="display:block;">
+                        <a href="javascript:switchid('extranews1');"   align="center" style="background-color :	#E0EAFB;">संस्थान</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; &nbsp;
+                        <a href="javascript:switchid('extranews2');" >जिमखाना</a>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                        <a href="javascript:switchid('extranews3');" > विविध </a>
+                        <div id="list">
+                            <script>
+                                $("#list").load("/section/institute/  #content")
+                            </script>
+                        </div>
+
+                    </div>
+                    <div id='extranews2' style="display:none;">
+                        <a href="javascript:switchid('extranews1');"   >संस्थान</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; &nbsp;
+                        <a href="javascript:switchid('extranews2');" align="center" style="background-color :	#E0EAFB; " >जिमखाना</a>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                        <a href="javascript:switchid('extranews3');" > विविध </a>
+                        <div id="list2">
+                            <script>
+                                $("#list2").load("/section/gymkhana/  #content")
+                            </script>
+                        </div>
+
+                    </div>
+
+
+                    <div id='extranews3' style="display:none;">
+                        <a href="javascript:switchid('extranews1');"  >संस्थान</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; &nbsp;
+                        <a href="javascript:switchid('extranews2');" >जिमखाना</a>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                        <a href="javascript:switchid('extranews3');" align="center" style="background-color :	#E0EAFB; " > विविध </a>
+                        <div id="list3">
+                            <script>
+                                $("#list3").load("/section/general/  #content")
+                            </script>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div id="gc">
+                    <h align="center" style="background-color :	#E0EAFB; ">ख़बरों में खड़गपुर </h><hr><br></br>
+                    <div class="newsticker-jcarousellite">
+                        <ul>
+                            {% if scroll_list %}
+                            {% for news in scroll_list %}
+                            <li>
+                                <div class="thumbnail">{% if news.image %}
+                                    <img src="{{ STATIC_URL }}{{ news.image|safe}}" height="60" width="80" align="top">{% endif %}
+                                </div>
+                                <div class="info">{{ news.news|safe }}</div>
+                            </li>
+                            <br>
+                            {% endfor %}
+                            {% endif %}
+                        </ul>
+
+
+                </div>
+            </div>
+            
+            {% endblock %}

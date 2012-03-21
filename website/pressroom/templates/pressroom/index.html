@@ -1,0 +1,33 @@
+{% extends "awaaz/base.html" %}
+
+{% block title %}Recent News{% endblock %}
+
+{% block content %}
+{% if articles %}
+
+{% for article in articles %}
+
+
+<h1><a href="{{ article.get_absolute_url }}">{{ article.headline }}</a></h1><br/><br>
+{% if article.photos %}
+<div class="news_image" >
+    {% for photo in article.photos.all %}
+    <a href="{{ photo.get_absolute_url }}" ><img src="{{ photo.get_display_url }}" align="left" /></a>
+    {% endfor %}
+</div>
+{% endif %}
+<div class="article-summary" >{{ article.summary }}</div>        
+<div class="article-pubdate">{{ article.pub_date|date:"F j, Y" }}</div>
+    <{{ article.pub_date|date:"F j, Y" }}</div>
+
+<br><br><br>
+<hr>
+{% endfor %}
+{% else %}
+<p>No news articles were found.</p>
+{% endif %}
+
+{% endblock %}
+
+
+

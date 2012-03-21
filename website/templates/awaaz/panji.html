@@ -1,0 +1,10 @@
+{% extends "base_site.html" %}
+{% block content %}
+{% if panji_list %}
+
+{% for panji in panji_list %}
+<img src="{{ STATIC_URL }}{{ panji.image }}" height="230px" width="190px" float="left" border="2px"/>
+&nbsp;&nbsp;&nbsp;
+{% endfor %}
+{% endif %}	
+{% endblock %}

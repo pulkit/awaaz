@@ -1,0 +1,13 @@
+{% extends "base_site.html" %}
+
+{% block content %}
+{% if issue_list %}
+		{% for issue in issue_list %}
+			<h>{{ issue.year }}</h><br>
+			<h>{{ issue.month }}</h><br>
+			{{ issue.embed|safe}}
+			<br>
+		{% endfor %}
+<br>
+{% endif %}
+{% endblock %}

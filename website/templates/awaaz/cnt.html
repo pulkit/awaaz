@@ -1,0 +1,36 @@
+{% extends "base_site.html" %}
+{% block table %}
+<h  align="center" style="background-color :	#E0EAFB; border-radius:5px;width:220px;padding:2px;box-shadow: 5px 5px 5px #888888;">हमें लिखें</h>
+	{% if errors %}
+		<ul> {% for error in errors %}
+			<li> {{ error }} </li>
+              {% endfor %}
+        </ul>
+	{% endif %}
+	
+	<form action="/awaaz/contact/" method="POST">	
+	{% csrf_token %}
+	{{ form.non_field_errors }}
+	<br><br>
+    <div class="fieldWrapper">
+        {{ form.sender.errors }}
+        <label for="id_sender"><h style="background-color:white">आपका नाम </h><br></label>
+       {{ form.sender }}
+		<br><br><br>
+    </div>
+    <div class="fieldWrapper">
+        {{ form.subject.errors }}
+        <label for="id_subject"><h style="background-color:white">विषय </h><br></label>
+         &nbsp;{{ form.subject }}
+				<br><br><br>
+    </div>
+
+	<div class="fieldWrapper">
+        {{ form.message.errors }}
+        <label for="id_message"><h style="background-color:white">आपका सन्देश</h><br></label>
+         &nbsp;{{ form.message }}
+		<br><br><br>
+    </div>
+		<input type="submit" value="Submit">
+	</form>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base_site.html" %}
+
+{% block title %}Latest Articles{% endblock %}
+
+{% block content %}
+{% if latest %}
+{% for article in latest %}
+<div class="article">
+    <h1><a href="{{ article.get_absolute_url }}">{{ article.headline }}</a></h1><br/><br>
+    <div class="news_image" >
+        {% if article.photos %}
+        {% for photo in article.photos.all %}
+        <a href="{{ photo.get_absolute_url }}"><img src="{{ photo.get_display_url }}" align="left"/></a>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="article-summary">{{ article.summary }}...</div>
+    <div class="article-pubdate">{{ article.pub_date|date:"M d Y" }}</div>
+
+</div><br><br>
+{% endfor %}
+{% else %}
+<p>No articles were found.</p>
+{% endif %}
+{% endblock %}
+
+

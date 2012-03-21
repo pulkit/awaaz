@@ -1,0 +1,12 @@
+{% extends "base_site.html" %}
+{% block title %}{{ section.title }}{% endblock %}
+
+{% block content %}
+{% for article in object_list %}
+<p>{{ article.headline|upper }}<a href="{{ article.get_absolute_url }}">
+<br>more</a></p>
+<p>{{ article.byline }}</p>
+<br>
+{% endfor %}
+
+{% endblock %}

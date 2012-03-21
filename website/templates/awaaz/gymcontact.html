@@ -1,0 +1,49 @@
+{% extends "base_site.html" %}
+{% block menu_table %}
+	<table width="510" align="left" style="border-collapse: collapse"><tr height="30"></tr><tr height="30"><td width="20"></td> <td width="120" align="center" ><a href="/"> मुख्य पृष्ठ  </a></td><td width="120" align="center"> <a href="/article/">खबरें </a></td><td width="120" align="center"> <a href="/yourvoice/">आपकी आवाज़</a></td><td width="120" align="center"> <a href="/pages/sponsors/">प्रायोजक</a></td></tr> <tr height="30"><td width="20"><td align="center" style="background-color :	#E0EAFB; border-radius:5px;width:120px;padding:2px;box-shadow: 4px 4px 4px #888888;"><a href="/pages/gymkhana/about">जिमखाना</a></td><td width="120" align="center"> <a href="/issue/">प्रकाशन</a></td><td width="120" align="center"> <a href="/pages/about/">परिचय</a> </td><td width="120" align="center"><a href="/form/contact/">हमें लिखें</a> </td></tr></table>
+{% endblock %}
+{% block content %}
+<br>
+<br>
+<table  cellspacing="70">
+<tr>
+  <td align="center"><a href="/pages/gymkhana/about">हमारे बारे में</a></td>
+  <td align="center"><a href="/pages/gymkhana/calendar">केलेंडर</a></td>
+  <td align="center" style="background-color :	#E0EAFB; border-radius:5px;width:120px;padding:2px;box-shadow: 4px 4px 4px #888888;"><a href="/awaaz/gymkhana/contact">हमें लिखें</a></td>
+  <td align="center"><a href="/pages/gymkhana/postbearers">पदाधिकारी</a></td>
+</tr>
+</table>
+<h align="center" style="background-color :	#E0EAFB; border-radius:5px;width:220px;padding:2px;box-shadow: 5px 5px 5px #888888;">हमें लिखें</h>
+	{% if errors %}
+		<ul> {% for error in errors %}
+			<li> {{ error }} </li>
+              {% endfor %}
+        </ul>
+	{% endif %}
+	
+	<form action="/pages/gymkhana/contact/" method="POST">	
+	{% csrf_token %}
+	{{ form.non_field_errors }}
+	<br><br>
+    <div class="fieldWrapper">
+        {{ form.sender.errors }}
+        <label for="id_sender"><h style="background-color:white">आपका नाम </h><br></label>
+       {{ form.sender }}
+		<br><br><br>
+    </div>
+    <div class="fieldWrapper">
+        {{ form.subject.errors }}
+        <label for="id_subject"><h style="background-color:white">विषय </h><br></label>
+         &nbsp;{{ form.subject }}
+				<br><br><br>
+    </div>
+
+	<div class="fieldWrapper">
+        {{ form.message.errors }}
+        <label for="id_message"><h style="background-color:white"> आपका सन्देश</h><br></label>
+         &nbsp;{{ form.message }}
+		<br><br><br>
+    </div>
+		<input type="submit" value="Submit">
+	</form>
+{% endblock %}

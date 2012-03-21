@@ -1,0 +1,43 @@
+{% extends "base_site.html" %}
+{% block content %}
+<table>
+<td>
+<br></br>
+<h style="background-color:white">अपनी रचनाएँ हम तक पहुँचाने के लिए </h><a class="form" href="/yourvoice/form/" align="center" style="background-color :	#E0EAFB; border-radius:5px;width:130px;padding:2px;box-shadow: 4px 4px 4px #888888;">हमें लिखें</a>
+<br>
+<br>
+{% if articles.object_list %}
+	
+		{% for article in articles.object_list %}
+			<table >
+			<td id="news">
+			<h><a href="/yourvoice/{{ article.id }}/">{{ article.title }}</a></h><br>
+			<h style="font-size:10px;">{{ article.date }}</h><br>
+			<h style="font-size:15px;">{{ article.name|safe }}</h><hr>
+			<p>{{ article.article|safe}}</p><br>
+			</td>
+			<br>
+		</table>
+		<br></br><br></br>
+		{% endfor %}
+<br>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if articles.has_previous %}
+            <a href="?page={{ articles.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+          <p>  Page {{ articles.number }} of {{ articles.paginator.num_pages }}.</p>
+        </span>
+
+        {% if articles.has_next %}
+            <a href="?page={{ articles.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+</td>
+</table>
+{% endblock %}

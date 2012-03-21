@@ -1,0 +1,60 @@
+{% extends "base_site.html"%}
+{% block content %}
+<form action="/awaaz/issues/search/" method="POST">{% csrf_token %}
+     
+<select name="issue_year">
+<h>year :</h>
+<option value="2010"> 2010</option>
+<option value="2009"> 2009</option>
+<option value="2008"> 2008</option>
+<option value="2007"> 2007</option>
+<option value="2006"> 2006</option>
+</select>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<select name="issue_month">
+<h>month :</h>
+<option value="january">january</option>
+<option value="february">february</option>
+<option value="march">march</option>
+<option value="april">april</option>
+<option value="may">may</option>
+<option value="june">june</option>
+<option value="july">july</option>
+<option value="august">august</option>
+<option value="september">september</option>
+<option value="october">october</option>
+<option value="november">november</option>
+<option value="december">december</option>
+</select>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="submit" value="search">
+</form>
+<br><br><br>			
+{% if issues.object_list %}
+
+		{% for issue in issues.object_list %}
+			<h>{{ issue.year }}</h><br>
+			<h>{{ issue.month }}</h>
+			{{ issue.embed|safe}}
+		<br></br>
+		{% endfor %}
+	
+<br>
+<div class="pagination">
+    <span class="step-links">
+        {% if issues.has_previous %}
+            <a href="?page={{ issues.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+          <p>  Page {{ issues.number }} of {{ issues.paginator.num_pages }}.</p>
+        </span>
+
+        {% if issues.has_next %}
+            <a href="?page={{ issues.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+{% endblock %}
