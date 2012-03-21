@@ -166,3 +166,27 @@ div#header{
   /**********************************************************************************************************************************/
  .news_image { height: 72px; width: 82px;  }
   .news_image img { padding: 2px; border: 1px solid #ccc; background-color: #eee; }
+
+  #video{
+  width:380px;
+  padding:40px;
+  display:inline;
+  float:left;
+  }
+  #video_image
+  {
+  border-style:solid;
+  border-color:black;
+  border-top-width:30px;
+  border-bottom-width:30px;
+ 
+  }
+#video_box
+  {
+      position:relative;
+      padding:40px;
+      margin-right:auto;
+      margin-left:auto;
+      align:center
+ 
+  }

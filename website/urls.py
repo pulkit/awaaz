@@ -12,7 +12,8 @@ urlpatterns = patterns('',
         (r'^form/',include('form.urls')),
         (r'^issue/',include('issue.urls')),
         #(r'^yourvoice/',include('YourVoice.urls')),
-        (r'^',include('pressroom.urls')),
+        (r'^',include('videos.urls')),
+        (r'^pressroom/',include('pressroom.urls')),
         (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.MEDIA_ROOT})
-        )
+  )

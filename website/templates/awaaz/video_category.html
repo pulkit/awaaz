@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title >Awaaz Site </title>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/awaazstyle.css" />
+        <script src = "{{ STATIC_URL }}js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script src="{{ STATIC_URL }}js/chart1.js" type="text/javascript"></script>
+        <script src="{{ STATIC_URL }}js/chart2.js" type="text/javascript"></script>
+        <script src="{{ STATIC_URL }}js/chart3.js" type="text/javascript"></script>
+        <script src="{{ STATIC_URL }}js/charts.js" type="text/javascript"></script>	
+
+        <!-- include Cycle plugin -->
+        <script type="text/javascript" src="http://cloud.github.com/downloads/malsup/cycle/jquery.cycle.all.2.74.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                    //var links = document.getElementById('header').getElementsByTagName('a') ; 
+                    // for (var i=0 ; i < links.length ; i++){
+                    // var li = links[i];
+                    // li.href = "javascript:$('#main').load('"+ li.href +"  #main')";
+
+
+                    // }
+                    $('.slideshow').cycle({
+fx: 'fade' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+});
+                    $('.news_image').cycle({
+fx: 'fade' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+});
+                    $('#header a').on('click',function(){
+
+                        setTimeout(function(){ 
+                            $('.slideshow').cycle({
+fx: 'fade' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+});
+                            $('.news_image').cycle({
+fx: 'fade' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+});
+                            },100);
+                        });
+
+});
+</script>  
+{% block extra_head %}{% endblock %}
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <table width="510" align="left" style="border-collapse: collapse"><tr height="30"></tr><tr height="30"><td width="20"></td> <td width="120" align="center" ><a href="/">मुख्य पृष्ठ</a></td><td width="120" align="center"  > <a href="/article/">खबरें </a></td><td width="120" align="center"> <a href="/yourvoice/">आपकी आवाज़</a></td><td width="120" align="center"> <a href="/pages/sponsors/">प्रायोजक </a></td></tr> <tr height="30"><td width="20"><td align="center" ><a href="/pages/gymkhana/about/">जिमखाना</a></td><td width="120" align="center"> <a href="/issue/">प्रकाशन</a></td><td width="120" align="center"> <a href="/pages/about/">परिचय</a> </td><td width="120" align="center"><a href="/form/contact/">हमें लिखें</a> </td></tr> </table>
+            </div>
+
+            <div id="main"><br></br><br></br><br>
+                <div id="video_box">
+                    {% for video in videos %}
+
+                    <div id="video">
+<div id="caption">
+    <h>{{ video.title }}</h><br></br>
+     </div>
+
+             <a href="/video_content/?pk={{video.id}}"><img id = "video_image"src="{{video.image.get_video_url}}" /></a>
+     </div>
+                         {% endfor %}
+                </div>
+    </div>
+     </div>
+ </html>
+</body>
